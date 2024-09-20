@@ -1,0 +1,681 @@
+/* General styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom right, #f0f4ff, #ffffff);
+    margin: 0;
+    padding: 0;
+}
+/* Navbar */
+.navbar {
+    background: linear-gradient(90deg, rgba(29, 8, 148, 0.8) 0%, rgba(73, 55, 207, 0.8) 100%);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: static;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease;
+}
+
+.navbar .logo {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.navbar ul li {
+    position: relative;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    color: #f1c40f;
+}
+
+.navbar ul li a::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background-color: #f1c40f;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar ul li a:hover::before {
+    visibility: visible;
+    width: 100%;
+}
+
+.navbar ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    top: 0;
+    right: 0;
+    background-color: #f1c40f;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar ul li a:hover::after {
+    visibility: visible;
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .navbar ul li {
+        width: 100%;
+    }
+
+    .navbar ul li a {
+        width: 100%;
+        padding: 1rem;
+        text-align: left;
+    }
+}
+
+/* Dashboard container */
+.dashboard-container {
+    margin: 2rem 3rem;
+    text-align: center;
+}
+
+.welcome h1 {
+    color: #1d0894;
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.welcome p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.section {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2.5rem;
+}
+
+.card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 28%;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card h3 {
+    color: #1d0894;
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
+}
+
+.card p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.card button {
+    background-color: rgba(29, 8, 148, 0.8);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card button:hover {
+    background-color: #160673;
+    box-shadow: 0 8px 20px rgba(29, 8, 148, 0.5);
+}
+.card a {
+    color: white;
+    font-size: 1rem;
+    text-decoration: none;
+}
+/* Footer */
+.footer {
+    background-color: rgba(29, 8, 148, 0.8);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: static;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+
+/* Job Opportunities Page */
+
+.job-container {
+    margin: 2rem 3rem;
+    text-align: center;
+}
+
+.header h1 {
+    color: #1d0894;
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.job-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.job-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.job-card:hover {
+    transform: translateY(-10px);
+}
+
+.job-card h3 {
+    color: #1d0894;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.job-card p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.apply-button {
+    display: inline-block;
+    background-color: rgba(29, 8, 148, 0.8);
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.apply-button:hover {
+    background-color: #160673;
+    box-shadow: 0 8px 20px rgba(29, 8, 148, 0.5);
+}
+
+/* Internships Page */
+
+.internship-container {
+    margin: 2rem 3rem;
+    text-align: center;
+}
+
+.header h1 {
+    color: #1d0894;
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.internship-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.internship-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.internship-card:hover {
+    transform: translateY(-10px);
+}
+
+.internship-card h3 {
+    color: #1d0894;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.internship-card p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.apply-button {
+    display: inline-block;
+    background-color: rgba(29, 8, 148, 0.8);
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.apply-button:hover {
+    background-color: #160673;
+    box-shadow: 0 8px 20px rgba(29, 8, 148, 0.5);
+}
+
+/* Mentorship Page */
+
+.mentorship-container {
+    margin: 2rem 3rem;
+    text-align: center;
+}
+
+.header h1 {
+    color: #1d0894;
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.mentorship-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.mentorship-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.mentorship-card:hover {
+    transform: translateY(-10px);
+}
+
+.mentorship-card h3 {
+    color: #1d0894;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.mentorship-card p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.apply-button {
+    display: inline-block;
+    background-color: rgba(29, 8, 148, 0.8);
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.apply-button:hover {
+    background-color: #160673;
+    box-shadow: 0 8px 20px rgba(29, 8, 148, 0.5);
+}
+
+/* Counseling Page */
+
+.counseling-container {
+    margin: 2rem 3rem;
+    text-align: center;
+}
+
+.header h1 {
+    color: #1d0894;
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.counseling-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.counseling-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.counseling-card:hover {
+    transform: translateY(-10px);
+}
+
+.counseling-card h3 {
+    color: #1d0894;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.counseling-card p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.apply-button {
+    display: inline-block;
+    background-color: rgba(29, 8, 148, 0.8);
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.apply-button:hover {
+    background-color: #160673;
+    box-shadow: 0 8px 20px rgba(29, 8, 148, 0.5);
+}
+
+/* Profile Page Styles */
+
+.profile-container {
+    margin: 2rem 3rem;
+    color: #1d0894;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.profile-picture {
+    flex: 1;
+    text-align: center;
+}
+
+.profile-picture img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #1d0894;
+    object-fit: cover;
+}
+
+.profile-info {
+    flex: 3;
+    margin-left: 2rem;
+}
+
+.profile-info h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.profile-info p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: center; 
+    margin-bottom: 1rem; 
+    font-size: 0.9rem; 
+}
+
+.profile-stats span {
+    font-size: 1rem; 
+    color: #666;
+    margin: 0 0.5rem; 
+}
+
+.posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem; 
+}
+
+.post {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.post img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+}
+
+.post p {
+    font-size: 1rem;
+    color: #666;
+    margin: 0;
+}
+
+.edit-button {
+    background-color: rgba(29, 8, 148, 0.8);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 1rem; 
+}
+
+.edit-button:hover {
+    background-color: #160673;
+    box-shadow: 0 8px 20px rgba(29, 8, 148, 0.5);
+}
+
+.profile-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    align-content: end;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .profile-header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-info {
+        margin-left: 0;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .posts {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .post {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .counseling-card {
+        width: 45%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .counseling-card {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .mentorship-card {
+        width: 45%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .mentorship-card {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .internship-card {
+        width: 45%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .internship-card {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .job-card {
+        width: 45%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .job-card {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .section {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 80%;
+        margin-bottom: 2rem;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .dashboard-container {
+        margin: 1rem;
+    }
+
+    .navbar ul {
+        gap: 1rem;
+    }
+
+    .welcome h1 {
+        font-size: 2rem;
+    }
+}

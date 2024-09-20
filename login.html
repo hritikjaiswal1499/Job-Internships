@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login or Sign Up - Career Path</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* General styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #dbe4ff, #f0f4ff);
+}
+
+/* Auth container */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 70%;
+    overflow: hidden;
+    height: 80%;
+    position: relative;
+}
+
+/* Image on the left */
+.auth-image {
+    flex: 1;
+    height: 100%;
+    display: flex;
+}
+
+.auth-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(30%);
+}
+
+/* Form container */
+.auth-form {
+    flex: 1;
+    padding: 4rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.auth-form h1 {
+    font-size: 2.2rem;
+    color: rgba(29, 8, 148, 0.9);
+    margin-bottom: 1.2rem;
+}
+
+.auth-form p {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 2rem;
+}
+
+/* Input fields with icons */
+.input-field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    background-color: #f7f7f7;
+    border-radius: 30px;
+    padding: 0.8rem 1.5rem;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.input-field i {
+    color: rgba(29, 8, 148, 0.7);
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+.input-field input {
+    border: none;
+    outline: none;
+    background: none;
+    width: 100%;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+}
+
+/* Buttons */
+.auth-btn {
+    background-color: rgba(29, 8, 148, 0.8);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-btn:hover {
+    background-color: #160673;
+    box-shadow: 0 8px 20px rgba(29, 8, 148, 0.5);
+}
+
+/* Form Toggle */
+.form-toggle {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+}
+
+.form-toggle button {
+    background-color: transparent;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.form-toggle button.active {
+    background-color: rgba(29, 8, 148, 0.8);
+    color: white;
+}
+
+.form-toggle button:hover {
+    background-color: rgba(29, 8, 148, 0.5);
+    color: white;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .auth-container {
+        flex-direction: column;
+        height: auto;
+        width: 90%;
+    }
+
+    .auth-image {
+        display: none;
+    }
+
+    .auth-form {
+        padding: 2rem;
+    }
+
+    .form-toggle {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .form-toggle button {
+        width: 100%;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-image">
+            <img src="madhav.jpg" alt="Career Path">
+        </div>
+        <div class="auth-form">
+            <div class="form-toggle">
+                <button id="login-toggle" class="active" onclick="showLogin()">Login</button>
+                <button id="signup-toggle" onclick="showSignup()">Sign Up</button>
+            </div>
+            <div id="login-form">
+                <h1>Login</h1>
+                <p>Access your account</p>
+                <form action="dashboard.html" method="POST">
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="login-username" placeholder="Username" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="login-password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Login</button>
+                </form>
+            </div>
+            <div id="signup-form" style="display: none;">
+                <h1>Sign Up</h1>
+                <p>Create a new account</p>
+                <form action="signup.html" method="POST">
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="signup-username" placeholder="Username" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="signup-email" placeholder="Email" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="signup-password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- Include FontAwesome for icons -->
+    <script>
+        function showSignup() {
+            document.getElementById('signup-form').style.display = 'block';
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('login-toggle').classList.remove('active');
+            document.getElementById('signup-toggle').classList.add('active');
+        }
+
+        function showLogin() {
+            document.getElementById('login-form').style.display = 'block';
+            document.getElementById('signup-form').style.display = 'none';
+            document.getElementById('signup-toggle').classList.remove('active');
+            document.getElementById('login-toggle').classList.add('active');
+        }
+    </script>
+</body>
+</html>
