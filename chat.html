@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Centering styles for chatbot */
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f4ff; /* Match your theme */
+        }
+
+        .chat-container {
+            width: 90%;  /* Adjust width as needed */
+            max-width: 600px;  /* Limit the maximum width */
+            height: 80%;  /* Adjust height as needed */
+            max-height: 800px;  /* Limit the maximum height */
+            background-color: white;  /* Background for the chatbot */
+            border-radius: 15px;  /* Rounded corners */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);  /* Shadow for depth */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Chat header styles */
+        .chat-header {
+            background-color: rgba(29, 8, 148, 0.8);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.5rem;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        /* Chat body styles */
+        .chat-body {
+            flex: 1;  /* Take the remaining space */
+            padding: 1rem;
+            overflow-y: auto;  /* Enable vertical scrolling */
+            display: flex;
+            flex-direction: column;
+            gap: 10px;  /* Space between messages */
+        }
+
+        /* Message styles */
+        .message {
+            padding: 10px 15px;
+            border-radius: 15px;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            background-color: rgba(29, 8, 148, 0.8);
+            color: white;
+            align-self: flex-end; /* Align user messages to the right */
+        }
+
+        .bot-message {
+            background-color: #e0e0e0;
+            color: #333;
+            align-self: flex-start; /* Align bot messages to the left */
+        }
+
+        /* Input area styles */
+        .chat-input {
+            padding: 1rem;
+            border-top: 1px solid #ddd;
+            display: flex;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            margin-right: 0.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-input button {
+            padding: 0.5rem 1rem;
+            background-color: rgba(29, 8, 148, 0.8);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .chat-input button:hover {
+            background-color: #160673;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            Chatbot
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="message bot-message">Welcome! How can I assist you today?</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Type your message..." />
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const sendButton = document.getElementById('sendButton');
+        const userInput = document.getElementById('userInput');
+        const chatBody = document.getElementById('chatBody');
+
+        // Basic commands for the chatbot
+        const commands = {
+            "hello": "Hi there! How can I assist you today?",
+        "jobs": "You can explore job opportunities on the Jobs page.",
+        "internships": "Check out internships on the Internships page.",
+        "mentorship": "We have mentorship programs available on the Mentorship page. Our Expert Mentor team is there to guide you, Mrs. Harshita Vaghela is marketing mentor and Mr. Manthan Sachdev is Engineering mentor.",
+        "counseling": "For career counseling, visit the Counseling page. Mr. Hritik jaiswal is there to guide you!",
+        "help": "You can ask about jobs, internships, mentorship, or counseling.",
+        "bye": "Goodbye! Have a great day!",
+        "what is career path": "Career Path is a platform to help you find job opportunities, internships, and mentorship.",
+        "how to apply for a job": "You can apply directly through the Jobs page.",
+        "how to get an internship": "Visit the Internships page for available opportunities.",
+        "what is mentorship": "Mentorship involves guidance from experienced professionals in your field.",
+        "what is counseling": "Counseling helps you navigate your career options and make informed decisions.",
+        "can you help me": "Absolutely! Just let me know what you need help with.",
+        "tell me about the job market": "The job market is competitive, but there are many opportunities available.",
+        "how to write a resume": "Highlight your skills and experiences. Check our resources for tips!",
+        "what skills are in demand": "Skills like coding, data analysis, and communication are highly sought after.",
+        "how to prepare for an interview": "Research the company, practice common questions, and dress appropriately.",
+        "where can I find job listings": "You can find job listings on the Jobs page of our site.",
+        "what are soft skills": "Soft skills include communication, teamwork, and problem-solving abilities.",
+        "how important is networking": "Networking can significantly improve your job prospects.",
+        "what is a cover letter": "A cover letter introduces you to potential employers and explains your interest.",
+        "can I get a job without experience": "Yes, internships and volunteer work can help you gain experience.",
+        "what are internships": "Internships provide practical experience in your field of study.",
+        "how to choose a career": "Consider your interests, strengths, and job market trends.",
+        "can you recommend courses": "Check out online platforms for courses related to your field.",
+        "what is a job fair": "A job fair is an event where employers and job seekers connect.",
+        "how to ace a job interview": "Practice, research the company, and be confident!",
+        "what is the best time to apply for jobs": "Apply early in the year or during the summer for best results.",
+        "how to build a professional network": "Attend events, use LinkedIn, and connect with alumni.",
+        "what is a professional resume": "A resume tailored for specific jobs showcasing your skills and experiences.",
+        "how to deal with job rejection": "Learn from the experience, seek feedback, and keep applying.",
+        "what industries are growing": "Tech, healthcare, and renewable energy are rapidly growing sectors.",
+        "how to find a mentor": "Reach out to professionals in your network or through mentorship programs.",
+        "what is an elevator pitch": "A brief, persuasive speech to introduce yourself and your goals.",
+        "how to set career goals": "Identify your long-term goals and break them into manageable steps.",
+        "what to include in a portfolio": "Include your best work samples and descriptions of each project.",
+        "how to improve my LinkedIn profile": "Keep it updated, add a professional photo, and showcase your skills.",
+        "what is the gig economy": "The gig economy refers to short-term contracts or freelance work.",
+        "how to negotiate salary": "Research industry standards and be prepared to discuss your value.",
+        "what are the benefits of internships": "Internships provide experience, networking, and potential job offers.",
+        "how to stay motivated while job searching": "Set goals, take breaks, and celebrate small wins.",
+        "what is a personal brand": "Your personal brand is how you present yourself professionally.",
+        "how to prepare a portfolio": "Showcase your best work relevant to the job you want.",
+        "what are the challenges of remote work": "Distractions, isolation, and communication issues can be challenges.",
+        "how to work from home effectively": "Create a dedicated workspace and set a schedule.",
+        "what are transferable skills": "Skills that can be applied in different roles or industries.",
+        "how to write a follow-up email": "Thank them for their time and express your continued interest.",
+        "what is job shadowing": "Job shadowing allows you to observe a professional in their work environment.",
+        "how to handle a difficult coworker": "Communicate openly and seek to understand their perspective.",
+        "what to do if I don't like my job": "Consider exploring other opportunities or discussing changes with your manager.",
+        "how to balance work and study": "Prioritize your time and set a consistent schedule.",
+        "what is a resume objective": "A brief statement summarizing your career goals and skills.",
+        "how to get a scholarship": "Research available scholarships and apply early with a strong application.",
+        "what is professional development": "Continual learning and growth in your career.",
+        "how to make a career change": "Assess your skills, network, and seek relevant opportunities.",
+        "what are job duties": "Specific tasks and responsibilities associated with a job.",
+        "how to prepare for an online interview": "Test your technology and find a quiet, professional space.",
+        "what to wear for an interview": "Dress professionally, typically business formal.",
+        "how to find remote jobs": "Search job boards and company websites that list remote opportunities.",
+        "what is employee onboarding": "The process of integrating new employees into a company.",
+        "how to write a thank-you note after an interview": "Express appreciation for their time and reiterate your interest.",
+        "what is a performance review": "An evaluation of an employee's job performance.",
+        "how to improve time management skills": "Use planners and prioritize tasks effectively.",
+        "what are the types of interviews": "Common types include phone, video, and in-person interviews.",
+        "how to network effectively": "Follow up after events and maintain relationships.",
+        "what is a business casual dress code": "A relaxed dress code suitable for professional settings.",
+        "how to deal with stress at work": "Practice mindfulness, take breaks, and manage your workload.",
+        "what is work-life balance": "A healthy balance between work responsibilities and personal life.",
+        "how to build confidence in interviews": "Practice common questions and focus on your strengths.",
+        "what is a job description": "A document outlining the duties and qualifications for a position.",
+        "how to create a career plan": "Set clear goals and identify the steps needed to achieve them.",
+        "what to include in a LinkedIn summary": "Highlight your skills, experiences, and career aspirations.",
+        "how to prepare for a panel interview": "Research the panelists and be ready to answer diverse questions.",
+        "what is an entry-level job": "A job suitable for beginners with little to no experience.",
+        "how to improve communication skills": "Practice active listening and clear speaking.",
+        "what is a side hustle": "A secondary job or business pursued alongside a primary one.",
+        "how to get a recommendation letter": "Ask a professional who knows your work well and can speak positively.",
+        "what are career assessments": "Tools to help you understand your strengths and interests.",
+        "how to stay organized during job search": "Use tools like spreadsheets or job tracking apps.",
+        "what is a company culture": "The shared values and behaviors of a company.",
+        "how to research a company before an interview": "Look at their website, social media, and recent news.",
+        "what are the benefits of a diverse workforce": "Diversity leads to innovation, creativity, and better problem-solving.",
+        "how to improve presentation skills": "Practice, seek feedback, and focus on your audience.",
+        "what is remote work": "Work that can be done from anywhere, not just the office.",
+        "how to conduct an informational interview": "Reach out to professionals and ask about their career paths.",
+        "what is a job offer": "A formal proposal to a candidate for employment.",
+        "how to respond to a job offer": "Evaluate the offer, and respond with gratitude and questions if needed.",
+        "what to do if I miss a job deadline": "Contact the employer and explain the situation honestly."
+        };
+
+        // Function to handle sending messages
+        sendButton.addEventListener('click', () => {
+            const userMessage = userInput.value.trim();
+            if (userMessage) {
+                addMessage(userMessage, 'user');
+                respondToMessage(userMessage.toLowerCase());
+                userInput.value = '';
+            }
+        });
+
+        // Function to add messages to the chat
+        function addMessage(message, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
+            messageDiv.textContent = message;
+            chatBody.appendChild(messageDiv);
+            chatBody.scrollTop = chatBody.scrollHeight; // Auto-scroll to the bottom
+        }
+
+        // Function to respond based on user input
+        function respondToMessage(message) {
+            const botResponse = commands[message] || "I'm sorry, I don't understand that.";
+            addMessage(botResponse, 'bot');
+        }
+    </script>
+</body>
+</html>
